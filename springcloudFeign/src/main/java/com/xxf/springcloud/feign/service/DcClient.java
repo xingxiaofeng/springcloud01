@@ -3,8 +3,8 @@ package com.xxf.springcloud.feign.service;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient("eureka-client")
+@FeignClient("compute-service")
 public interface DcClient {
-    @GetMapping("/dc")
+    @GetMapping("/add")
     String consumer();
 }

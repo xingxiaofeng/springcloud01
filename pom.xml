@@ -11,6 +11,7 @@
 
   	<module>springcloudribbon</module>
   	<module>springcloudFeign</module>
+  	<module>springcloudzuul</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>

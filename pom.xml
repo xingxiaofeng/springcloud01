@@ -12,6 +12,7 @@
   	<module>springcloudribbon</module>
   	<module>springcloudFeign</module>
   	<module>springcloudzuul</module>
+  	<module>SpringBootWithSwagger</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>

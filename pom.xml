@@ -10,6 +10,7 @@
   	<module>springcloudservicetwo</module>
 
   	<module>springcloudribbon</module>
+  	<module>springcloudFeign</module>
   </modules>
   <parent>
     <groupId>org.springframework.boot</groupId>

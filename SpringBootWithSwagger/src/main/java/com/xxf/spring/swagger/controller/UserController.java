@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.xxf.spring.swagger.model.User;
+
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value="/users")     // 通过这里配置使下面的映射都在/users下，可去除
+@RequestMapping(value="/users")     // 通过这里配置使下面的映射都在/users下，可去除)
 public class UserController {
 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
@@ -27,6 +29,9 @@ public class UserController {
     @RequestMapping(value={""}, method=RequestMethod.GET)
     public List<User> getUserList() {
         List<User> r = new ArrayList<User>(users.values());
+        User user= new User(1L,"abc",12);
+        r.add(user);
+        users.put(1L, user);
         return r;
     }
 
@@ -39,7 +44,7 @@ public class UserController {
     }
 
     @ApiOperation(value="获取用户详细信息", notes="根据url的id来获取用户详细信息")
-    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long",paramType = "path")
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long")
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public User getUser(@PathVariable Long id) {
         return users.get(id);
@@ -47,7 +52,7 @@ public class UserController {
 
     @ApiOperation(value="更新用户详细信息", notes="根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long",paramType = "path"),
+            @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long"),
             @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     })
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
@@ -60,7 +65,7 @@ public class UserController {
     }
 
     @ApiOperation(value="删除用户", notes="根据url的id来指定删除对象")
-    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long",paramType = "path")
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long")
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
     public String deleteUser(@PathVariable Long id) {
         users.remove(id);
